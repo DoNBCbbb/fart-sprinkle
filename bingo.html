@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Party bingo — Fart Sprinkle Studios</title>
+<style>
+:root{--navy:#1F3A5F;--pumpkin:#C45C26;--cream:#FFF8EF}
+body{margin:0;font-family:Georgia,serif;background:var(--cream);color:#1A1A1A}
+header{background:var(--navy);color:#fff;padding:16px 20px}
+main{max-width:900px;margin:0 auto;padding:20px}
+textarea{width:100%;min-height:110px}
+button{background:var(--pumpkin);color:#fff;border:0;padding:10px 14px;border-radius:6px;font-weight:700;cursor:pointer}
+.board{display:inline-block;margin:12px 12px 24px 0;vertical-align:top;background:#fff;border:2px solid var(--navy);page-break-inside:avoid}
+.board h3{margin:8px;text-align:center;color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(5,64px)}
+.cell{width:64px;height:64px;border:1px solid #d9c7b0;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;padding:3px}
+.free{background:#F4D2B0;font-weight:700}
+@media print{header,form,a,.no-print{display:none}}
+</style>
+</head>
+<body>
+<header>Fart Sprinkle Studios · party bingo</header>
+<main>
+<p class="no-print"><a href="index.html">← tools</a></p>
+<h1>Five cards, one list</h1>
+<p class="no-print">Paste 24+ prompts. Center square is FREE. Print. Personal use.</p>
+<form class="no-print" onsubmit="deal(event)">
+<textarea id="prompts">pumpkin
+cider donut
+hayride
+scarecrow
+candy corn
+porch light
+leaf pile
+black cat
+moon
+boot
+plaid
+cinnamon
+orchard
+lantern
+cobweb
+hoodie
+bonfire
+apple
+corn maze
+swater
+rake
+thermos
+owl
+harvest</textarea>
+<p><button type="submit">Deal 5 cards</button></p>
+</form>
+<div id="out"></div>
+<p class="no-print"><a href="https://payhip.com/b/804FN">Tip jar</a> · <a href="https://payhip.com/FartSprinkleStudios">holiday party packs</a></p>
+<script>
+function shuffle(a){const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function deal(e){e.preventDefault();
+const items=document.getElementById('prompts').value.split(/\n/).map(s=>s.trim()).filter(Boolean);
+if(items.length<24){alert('Need at least 24 prompts');return}
+const out=document.getElementById('out');out.innerHTML='';
+for(let n=1;n<=5;n++){
+  const pool=shuffle(items);
+  const board=document.createElement('div');board.className='board';
+  board.innerHTML='<h3>Card '+n+'</h3>';
+  const g=document.createElement('div');g.className='grid';
+  for(let i=0;i<25;i++){
+    const c=document.createElement('div');c.className='cell'+(i===12?' free':'');
+    c.textContent=i===12?'FREE':pool[i<12?i:i-1];
+    g.appendChild(c);
+  }
+  board.appendChild(g);out.appendChild(board);
+}}
+</script>
+</main>
+</body>
+</html>
