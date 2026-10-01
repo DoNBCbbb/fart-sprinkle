@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Snowball preview — Fart Sprinkle Studios</title>
+<style>
+:root{--navy:#1F3A5F;--pumpkin:#C45C26;--cream:#FFF8EF}
+body{margin:0;font-family:Georgia,serif;background:var(--cream)}
+header{background:var(--navy);color:#fff;padding:16px 20px}
+main{max-width:720px;margin:0 auto;padding:20px}
+input{width:100%;padding:8px;margin:4px 0 10px}
+button{background:var(--pumpkin);color:#fff;border:0;padding:10px 14px;border-radius:6px;font-weight:700}
+table{border-collapse:collapse;width:100%}
+td,th{border:1px solid #d9c7b0;padding:6px;text-align:left;background:#fff}
+.note{font-size:.9rem;color:#5A5148}
+</style>
+</head>
+<body>
+<header>Fart Sprinkle Studios · snowball preview</header>
+<main>
+<p><a href="index.html">← tools</a></p>
+<h1>Smallest balance first</h1>
+<p class="note">This is a log. Not financial, legal, or investment advice. Numbers stay on this page.</p>
+<label>Debts as name, balance, min payment — one per line</label>
+<textarea id="rows" rows="5" style="width:100%">Card A, 400, 25
+Card B, 1200, 40
+Car, 3800, 180</textarea>
+<label>Extra dollars a month you can throw at the smallest one</label>
+<input id="extra" type="number" value="50" min="0" />
+<p><button onclick="run()">Order them</button></p>
+<div id="out"></div>
+<p><a href="https://payhip.com/b/804FN">Tip jar</a> · full sheets live in the <a href="https://payhip.com/FartSprinkleStudios">shop</a></p>
+<script>
+function run(){
+const extra=Number(document.getElementById('extra').value)||0;
+const debts=document.getElementById('rows').value.trim().split(/\n/).map(line=>{
+const p=line.split(',').map(s=>s.trim());
+return {name:p[0],bal:Number(p[1]),min:Number(p[2])};
+}).filter(d=>d.name&&d.bal>0).sort((a,b)=>a.bal-b.bal);
+let html='<table><tr><th>Order</th><th>Name</th><th>Balance</th><th>Min</th></tr>';
+debts.forEach((d,i)=>{html+=`<tr><td>${i+1}</td><td>${d.name}</td><td>$${d.bal.toFixed(2)}</td><td>$${d.min.toFixed(2)}</td></tr>`});
+html+=`</table><p class="note">Attack #1 with its minimum plus $${extra.toFixed(2)} extra. When it hits zero, roll that payment onto #2. Recheck your real statements. Do not treat this as a plan from an adviser.</p>`;
+document.getElementById('out').innerHTML=html;
+}
+</script>
+</main>
+</body>
+</html>

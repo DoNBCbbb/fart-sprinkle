@@ -1,12 +1,13 @@
 # Fart Sprinkle Studios — free tools
 
-Public teaser only. Paid PDFs stay on [Payhip](https://payhip.com/FartSprinkleStudios).
+Working pages in this repo:
 
-- Tip jar: https://payhip.com/b/804FN
-- Free puzzle: `index.html`
+- `index.html` studio landing
+- `pumpkin.html` fixed large-print mini
+- `maker.html` browser word-search generator
+- `snowball.html` debt-order preview (log, not advice)
 
-## GitHub Pages ($0)
-Repo → Settings → Pages → Deploy from a branch → `main` / `/ (root)` → Save.
+Tip jar: https://payhip.com/b/804FN  
+Shop: https://payhip.com/FartSprinkleStudios
 
-Live URL after it builds:
-https://donbcbbb.github.io/fart-sprinkle/
+Pages URL after the one Settings click: https://donbcbbb.github.io/fart-sprinkle/

@@ -1,78 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Large Print Mini Word Search — Fart Sprinkle Studios</title>
-  <meta name="description" content="Free large-print word search in your browser. Tip the jar if it helps. Paid packs on Payhip." />
-  <style>
-    :root { --navy:#1F3A5F; --pumpkin:#C45C26; --cream:#FFF8EF; --ink:#1A1A1A; }
-    body { margin:0; font-family: Georgia, "Times New Roman", serif; background: var(--cream); color: var(--ink); }
-    header { background: var(--navy); color:#fff; padding:16px 20px; }
-    header strong { color:#F4D2B0; }
-    main { max-width: 720px; margin: 0 auto; padding: 20px; }
-    h1 { font-size: 1.6rem; margin: 0 0 8px; color: var(--navy); }
-    .grid { display:inline-block; background:#fff; border:1px solid #d9c7b0; padding:8px; }
-    .row { display:flex; }
-    .cell { width:28px; height:28px; display:flex; align-items:center; justify-content:center;
-            font-size:16px; font-weight:700; border:1px solid #ead9c6; }
-    ul { columns: 2; font-size: 1.05rem; }
-    .cta { display:flex; gap:10px; flex-wrap:wrap; margin: 18px 0 8px; }
-    a.btn { display:inline-block; padding:10px 14px; text-decoration:none; border-radius:6px; font-weight:700; }
-    a.tip { background: var(--pumpkin); color:#fff; }
-    a.shop { background: var(--navy); color:#fff; }
-    footer { font-size: .85rem; color:#5A5148; margin-top: 24px; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fart Sprinkle Studios — free tools</title>
+<style>
+:root{--navy:#1F3A5F;--pumpkin:#C45C26;--cream:#FFF8EF;--ink:#1A1A1A}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,serif;background:var(--cream);color:var(--ink)}
+header{background:var(--navy);color:#fff;padding:18px 22px}
+header strong{color:#F4D2B0}
+main{max-width:860px;margin:0 auto;padding:24px}
+h1{color:var(--navy);margin:.2em 0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:#fff;border:1px solid #d9c7b0;padding:16px;border-radius:10px}
+a.btn{display:inline-block;margin-top:10px;padding:9px 12px;border-radius:6px;text-decoration:none;font-weight:700;color:#fff;background:var(--navy)}
+a.tip{background:var(--pumpkin)}
+footer{margin-top:28px;font-size:.85rem;color:#5A5148}
+</style>
 </head>
 <body>
-  <header>Fart Sprinkle Studios · <strong>free mini puzzle</strong></header>
-  <main>
-    <h1>Pumpkin Patch — large print mini</h1>
-    <p>One free puzzle. No account. If it earns a smile, the tip jar keeps CryoBoard and Solstice free.</p>
-    <div class="grid" id="grid"></div>
-    <h2>Find</h2>
-    <ul id="words"></ul>
-    <div class="cta">
-      <a class="btn tip" href="https://payhip.com/b/804FN">Tip jar (pay what you want)</a>
-      <a class="btn shop" href="https://payhip.com/FartSprinkleStudios">Shop the 20-packs</a>
-    </div>
-    <footer>
-      Personal use. Not medical, legal, or financial advice.<br />
-      © 2026 Fart Sprinkle Studios
-    </footer>
-  </main>
-  <script>
-    const G = [
-      ['P','U','M','P','K','I','N','Q','L','A'],
-      ['A','O','R','A','N','G','E','V','A','U'],
-      ['T','V','I','N','E','S','E','E','D','T'],
-      ['C','X','S','T','E','M','B','W','D','U'],
-      ['H','L','A','N','T','E','R','N','F','M'],
-      ['A','U','T','U','M','N','G','O','R','N'],
-      ['R','G','O','U','R','D','J','K','P','H'],
-      ['V','P','A','T','C','H','M','Y','Z','S'],
-      ['E','B','C','D','F','H','J','K','L','T'],
-      ['S','W','X','Y','Z','Q','R','S','T','S']
-    ];
-    const WORD_LIST = ["PUMPKIN","ORANGE","VINE","SEED","STEM","LANTERN","AUTUMN","GOURD","PATCH"];
-    const box = document.getElementById('grid');
-    G.forEach((row) => {
-      const r = document.createElement('div');
-      r.className = 'row';
-      row.forEach((ch) => {
-        const c = document.createElement('div');
-        c.className = 'cell';
-        c.textContent = ch;
-        r.appendChild(c);
-      });
-      box.appendChild(r);
-    });
-    const ul = document.getElementById('words');
-    WORD_LIST.forEach(w => {
-      const li = document.createElement('li');
-      li.textContent = w;
-      ul.appendChild(li);
-    });
-  </script>
+<header>Fart Sprinkle Studios · <strong>free tools</strong></header>
+<main>
+<h1>Use a tool. Tip if it helps. Buy a pack if you want twenty more.</h1>
+<p>No account. No ads we paid for. Nothing here is medical, legal, or investment advice.</p>
+<div class="grid">
+  <article class="card">
+    <h2>Pumpkin mini</h2>
+    <p>One large-print word search. Sit down and find nine words.</p>
+    <a class="btn" href="pumpkin.html">Open puzzle</a>
+  </article>
+  <article class="card">
+    <h2>Word-search maker</h2>
+    <p>Type a word list. Get a printable 12×12 grid in the browser.</p>
+    <a class="btn" href="maker.html">Make one</a>
+  </article>
+  <article class="card">
+    <h2>Snowball preview</h2>
+    <p>See smallest-balance-first payoff order. Log only. Not advice.</p>
+    <a class="btn" href="snowball.html">Try it</a>
+  </article>
+</div>
+<p>
+  <a class="btn tip" href="https://payhip.com/b/804FN">Tip jar</a>
+  <a class="btn" href="https://payhip.com/FartSprinkleStudios">Shop packs</a>
+</p>
+<footer>© 2026 Fart Sprinkle Studios · personal use</footer>
+</main>
 </body>
 </html>
