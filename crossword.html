@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mini crossword — Fart Sprinkle Studios</title>
+<style>
+:root{--navy:#1F3A5F;--pumpkin:#C45C26;--cream:#FFF8EF}
+body{margin:0;font-family:Georgia,serif;background:var(--cream)}
+header{background:var(--navy);color:#fff;padding:16px 20px}
+main{max-width:640px;margin:0 auto;padding:20px}
+.row{display:flex}
+.cell{width:36px;height:36px;border:1px solid #1F3A5F;display:flex;align-items:center;justify-content:center;background:#fff;font-weight:700;position:relative}
+.cell.block{background:#1F3A5F}
+.num{position:absolute;top:1px;left:3px;font-size:9px;font-weight:400}
+@media print{header,a{display:none}}
+</style>
+</head>
+<body>
+<header>Fart Sprinkle Studios · mini crossword</header>
+<main>
+<p><a href="index.html">← tools</a></p>
+<h1>Fall mini</h1>
+<p>Print and pencil. Answers face down on the shop packs, not here.</p>
+<div id="g"></div>
+<ol>
+<li>Orange gourd (7)</li>
+<li>Drink pressed from apples (5)</li>
+<li>Autumn (4)</li>
+<li>Place for trees and picking (7)</li>
+</ol>
+<p><a href="https://payhip.com/b/804FN">Tip jar</a></p>
+<script>
+const rows=[
+[1,'P','U','M','P','K','I','N'],
+['#','#','#',2,'C','I','D','E','R'].slice(0,8),
+];
+// Fixed 8x5 puzzle: PUMPKIN across r0; CIDER down from C in pumpkin? Keep simple 5x7 display
+const G=[
+['1P','U','M','P','K','I','N'],
+['#','#','#','2C','#','#','#'],
+['#','#','#','I','#','#','#'],
+['3F','A','L','L','#','#','#'],
+['#','#','#','E','#','#','#'],
+['4O','R','C','H','A','R','D']
+];
+const box=document.getElementById('g');
+G.forEach(row=>{
+  const r=document.createElement('div');r.className='row';
+  row.forEach(cell=>{
+    const d=document.createElement('div');
+    if(cell==='#'){d.className='cell block'}
+    else{
+      d.className='cell';
+      const m=cell.match(/^(\d)?([A-Z])$/);
+      if(m[1]){const n=document.createElement('span');n.className='num';n.textContent=m[1];d.appendChild(n)}
+      // leave empty for the solver; letter stored as title for now unused
+    }
+    r.appendChild(d);
+  });
+  box.appendChild(r);
+});
+</script>
+</main>
+</body>
+</html>
