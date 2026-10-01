@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Large-print maze — Fart Sprinkle Studios</title>
+<style>
+:root{--navy:#1F3A5F;--pumpkin:#C45C26;--cream:#FFF8EF}
+body{margin:0;font-family:Georgia,serif;background:var(--cream)}
+header{background:var(--navy);color:#fff;padding:16px 20px}
+main{max-width:720px;margin:0 auto;padding:20px}
+button{background:var(--pumpkin);color:#fff;border:0;padding:10px 14px;border-radius:6px;font-weight:700}
+canvas{background:#fff;border:1px solid #d9c7b0}
+@media print{header,form,a{display:none}}
+</style>
+</head>
+<body>
+<header>Fart Sprinkle Studios · maze</header>
+<main>
+<p><a href="index.html">← tools</a></p>
+<h1>One large-print maze</h1>
+<p>15×15. Print it. Personal use. Not a contest with prizes.</p>
+<p><button onclick="draw()">New maze</button></p>
+<canvas id="c" width="480" height="480"></canvas>
+<p><a href="https://payhip.com/b/804FN">Tip jar</a> · <a href="https://payhip.com/FartSprinkleStudios">shop</a></p>
+<script>
+function draw(){
+const n=15,cell=32,ctx=document.getElementById('c').getContext('2d');
+const g=[...Array(n)].map(()=>[...Array(n)].map(()=>({u:1,d:1,l:1,r:1,v:0})));
+const stack=[[0,0]]; g[0][0].v=1;
+const dirs=[[0,-1,'u','d'],[1,0,'r','l'],[0,1,'d','u'],[-1,0,'l','r']];
+while(stack.length){
+  const [x,y]=stack[stack.length-1];
+  const nbr=dirs.map(([dx,dy,a,b])=>({nx:x+dx,ny:y+dy,a,b})).filter(o=>o.nx>=0&&o.ny>=0&&o.nx<n&&o.ny<n&&!g[o.ny][o.nx].v);
+  if(!nbr.length){stack.pop();continue}
+  const o=nbr[Math.floor(Math.random()*nbr.length)];
+  g[y][x][o.a]=0; g[o.ny][o.nx][o.b]=0; g[o.ny][o.nx].v=1; stack.push([o.nx,o.ny]);
+}
+ctx.clearRect(0,0,480,480); ctx.strokeStyle='#1F3A5F'; ctx.lineWidth=3;
+for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+  const X=x*cell,Y=y*cell; ctx.beginPath();
+  if(g[y][x].u){ctx.moveTo(X,Y);ctx.lineTo(X+cell,Y)}
+  if(g[y][x].d){ctx.moveTo(X,Y+cell);ctx.lineTo(X+cell,Y+cell)}
+  if(g[y][x].l){ctx.moveTo(X,Y);ctx.lineTo(X,Y+cell)}
+  if(g[y][x].r){ctx.moveTo(X+cell,Y);ctx.lineTo(X+cell,Y+cell)}
+  ctx.stroke();
+}
+ctx.fillStyle='#C45C26'; ctx.fillRect(4,4,10,10); ctx.fillRect(466,466,10,10);
+}
+draw();
+</script>
+</main>
+</body>
+</html>
